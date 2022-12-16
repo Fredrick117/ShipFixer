@@ -1,0 +1,41 @@
+*********************************************************
+* Game Design Document for ship fixing game (title TBD) *
+*********************************************************
+
+************
+* GAMEPLAY *
+************
+
+* First person perspective
+
+* Fast-paced, "fluid" movement
+    - High movement speed
+    - Medium jump height, long jump distance
+    - Climb ledge
+
+* Chaotic, fast-paced gameplay
+    - Numerous environmental hazards that will need to be avoided (fire spreading, exposed electric wire, etc.)
+    - Breaches in the hull and damage to internal ship systems require the player to move around frequently, or risk losing the ship and their lives
+    - Oxygen levels in a room decrease the longer a hull breach is left unchecked
+    - Progress based on time alive
+
+*************
+* MECHANICS *
+*************
+
+* Repair mechanic
+    - Simple system where the player holds a button for X seconds while standing near and looking at the hull breach.
+
+* Hull breach ruptures (idea 1)
+    - Maximum of three ruptures at any given time.
+    - Once a rupture is repaired, a delay will begin, after which a new rupture will occur (handled in GameMode via events)
+    - Every minute, the delay between ruptures decreases by a very small amount.
+    - Each rupture has a boolean called "isRuptured" and a float (or int?) value that corresponds to its integrity. 100 corresponds to fully repaired.
+
+* Oxygen system
+    - Each room should have its own oxygen levels, which can be affected by hull breaches
+    - Each room has one or more doors which can affect the flow of oxygen from other rooms.
+        * Example: Room A has a hull breach, and the door which leads to Room B is open. 
+        Oxygen levels in both rooms will begin to deplete until the door is closed. 
+        Once it is closed, Room B's oxygen levels will stabilize, while Room A will continue to leak until the breach is repaired.
+    - Larger rooms have more oxygen, take longer to deplete?
